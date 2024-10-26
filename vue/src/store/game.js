@@ -1,4 +1,5 @@
 import Vue from "vue";
+import gameStorage from '@/GameEngine/gameStorage';
 import levels from '@/assets/levels.json';
 import { validateFlower, validateWall, validateGround } from "@/GameEngine/GridValidationFunctions"
 
@@ -7,7 +8,9 @@ export default {
   state: {
     grid: [],
     selectedGrid: [],
-    cellTypes: [1, 2, 3, 4, 5],
+    cellTypes: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    currentLevel: null,
+    isCustomLevel: false,
     validationResults: {
       flower: "",
       wall: "",
@@ -20,6 +23,8 @@ export default {
     gridColumns: (state) => state.grid[0].length,
     selectedGrid: (state) => state.selectedGrid,
     cellTypes: (state) => state.cellTypes,
+    currentLevel: (state) => state.currentLevel,
+    isCustomLevel: (state) => state.isCustomLevel,
     getValidationResults: (state) => state.validationResults,
   },
   mutations: {
@@ -29,6 +34,10 @@ export default {
     },
     setSelectedGrid(state, selectedGrid) {
       state.selectedGrid = selectedGrid;
+    },
+    setCurrentLevel(state, { levelNumber, isCustom }) {
+      state.currentLevel = levelNumber;
+      state.isCustomLevel = isCustom;
     },
     updateCell(state, { row, col, cellType }) {
       state.grid[row][col] = cellType;
@@ -71,17 +80,33 @@ export default {
     },
   },
   actions: {
-    loadLevel({ commit }, levelNumber) {
-      try {
-        const levelData = levels.levels[levelNumber];
-        if (levelData) {
-          commit('setGrid', levelData);
-          const emptySelectedGrid = levelData.map(row => row.map(() => false));
-          commit('setSelectedGrid', emptySelectedGrid);
-        }
-      } catch (error) {
-        console.error("Failed to load level:", error);
+    loadLevel({ commit }, payload) {
+      const { levelNumber, isCustom } = payload;
+      const levelData = gameStorage.loadLevel(levelNumber, isCustom);
+      console.log(levelNumber, isCustom)
+      console.log("levelData", levelData)
+      if (levelData) {
+        commit('setGrid', levelData);
+        commit('setSelectedGrid', levelData.map(row => row.map(() => false)));
+        commit('setCurrentLevel', { levelNumber, isCustom });
+      } else {
+        console.error("Level not found");
       }
+    },
+    saveCustomLevel({ state }, levelNumber) {
+      gameStorage.saveCustomLevel(state.grid, levelNumber);
+    },
+    saveLevelToFile({ state }, fileName = 'level.json') {
+      gameStorage.saveLevelToFile(state.grid, fileName);
+    },
+    loadLevelFromFile({ commit }, file) {
+      gameStorage.loadLevelFromFile(file)
+        .then((levelData) => {
+          commit('setGrid', levelData);
+          commit('setSelectedGrid', levelData.map(row => row.map(() => false)));
+          commit('setCurrentLevel', { levelNumber: gameStorage.getNumberOfLevels(true), isCustom: true });
+        })
+        .catch(error => console.error(error));
     },
     updateCell({ commit }, payload) {
       commit("updateCell", payload);

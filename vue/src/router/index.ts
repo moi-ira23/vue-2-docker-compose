@@ -24,6 +24,15 @@ const routes = [
     }),
   },
   {
+    path: "/custom-level-:level_number",
+    name: RouteNames.CUSTOM_GAME,
+    component: GamePage,
+    props: (route: Route) => ({
+      levelNumber: Number(route.params.level_number),
+      isCustom: true
+    }),
+  },
+  {
     path: "/editor",
     name: RouteNames.EDITOR,
     component: EditorPage,
