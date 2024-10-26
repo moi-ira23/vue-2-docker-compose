@@ -10,52 +10,52 @@ export default {
     cards: [
       {
         title: "Attack",
-        image: "",
+        image: require('@/assets/cards/Archer_Charged_Shot.png'),
         cost: 1,
         rarity: 1,
         effects: [
           {
-            type: cardEffect.Attack,
+            type: cardEffect.ATTACK,
             values: [6],
           },
         ],
       },
       {
         title: "Defend",
-        image: "",
+        image:  require('@/assets/cards/Mage_Explode.png'),
         cost: 0,
         rarity: 1,
         effects: [
           {
-            type: cardEffect.Defend,
+            type: cardEffect.DEFEND,
             values: [6],
           },
         ],
       },
       {
         title: "Riposte",
-        image: "",
+        image:  require('@/assets/cards/Archer_Back_Up.png'),
         cost: 4,
         rarity: 1,
         effects: [
           {
-            type: cardEffect.Attack,
+            type: cardEffect.ATTACK,
             values: [4],
           },
           {
-            type: cardEffect.Defend,
+            type: cardEffect.DEFEND,
             values: [4],
           },
         ],
       },
       {
         title: "Fury Swipes",
-        image: "",
+        image: require('@/assets/cards/Archer_Rapid_Fire.png'),
         cost: 14,
         rarity: 1,
         effects: [
           {
-            type: cardEffect.Attack,
+            type: cardEffect.ATTACK,
             values: [1, 4],
           },
         ],
@@ -67,7 +67,7 @@ export default {
         rarity: 0,
         effects: [
           {
-            type: cardEffect.Attack,
+            type: cardEffect.ATTACK,
             values: [0],
           },
         ],
@@ -78,10 +78,4 @@ export default {
     getCards: (state) => state.cards,
     getCardById: (state) => (id) =>  state.cards.find((card) => card.id == id),
   },
-  mutations: {
-
-	},
-  actions: {
-
-	},
 };

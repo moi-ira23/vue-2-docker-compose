@@ -1,9 +1,9 @@
 export default {
-        Attack: "Attack",               //[amount, times]
-        Defend: "Defend",               //[amount]
-        Draw: "Draw",                   //[amount]
-        Shuffle: "Shuffle",             //[]
-        DiscardRandom: "Discard",       //[amount]
-        DiscardHand: "DiscardHand",     //[]
-        ExhaustSelf: "ExhaustSelf"
+        ATTACK: "Attack",               //[amount, times]
+        DEFEND: "Defend",               //[amount]
+        DRAW: "Draw",                   //[amount]
+        SHUFFLE: "Shuffle",             //[]
+        DISCARDRANDOM: "Discard",       //[amount]
+        DISCARDHAND: "DiscardHand",     //[]
+        EXHAUSTSELF: "ExhaustSelf"
 }

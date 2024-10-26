@@ -7,9 +7,9 @@ Vue.use(Vuex);
 export default {
   namespaced: true,
   state: {
-    startingDeck: [0, 0, 1],
-    deck: [0, 0, 1],
-    hand: [0, 1, 2, 3,],
+    startingDeck: [],
+    deck: [],
+    hand: [0, 1, 2, 3, ],
     drawPile: [],
     discardPile: [],
   },
@@ -19,10 +19,4 @@ export default {
     getDrawPile: (state) => state.drawPile.map((index) => cardStore.state.cards[index]),
     getDiscardPile: (state) => state.discardPile.map((index) => cardStore.state.cards[index]),
   },
-  mutations: {
-
-	},
-  actions: {
-
-	},
 };
