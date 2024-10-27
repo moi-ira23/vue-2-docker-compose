@@ -6,23 +6,23 @@
   >
     <div class="card__content center-horizontal">
       <div class="card__cost center-horizontal center-vertical">
-        <p>{{ (() => card.cost)() }}</p>
+        <p>{{  card.cost }}</p>
       </div>
       <div class="card__image center-horizontal">
         <img class="card__image-img"
           src='../../assets/cards/background.png'
         />
-        <img v-if="(() => card.image)()"
+        <img v-if="card.image"
           class="card__image-img"
-          :src="(() => card.image)()"
+          :src="card.image"
         />
       </div>
       <div class="card__info">
         <div class="card__title">
-          <p>{{ (() => card.title)() }}</p>
+          <p>{{ card.title }}</p>
         </div>
         <div class="card__description">
-          <p>{{ (() => cardDescription)() }}</p>
+          <p>{{ cardDescription }}</p>
         </div>
       </div>
     </div>
@@ -43,7 +43,6 @@ export default {
   },
   mounted() {
     this.generateDescription();
-    console.log(this.card);
   },
   methods: {
     onCardClick() {
@@ -54,46 +53,46 @@ export default {
       this.$emit('onMouseOver', isHovered);
     },
 
-		generateDescription() {
-			this.cardDescription = "";
+    generateDescription() {
+      this.cardDescription = "";
 
-			this.card.effects.forEach(effect => {
-				this.cardDescription += this.returnDescriptionString(effect) + '\n';
-			});
-		},
+      this.card.effects.forEach(effect => {
+        this.cardDescription += this.returnDescriptionString(effect) + '\n';
+      });
+    },
 
-		returnDescriptionString(effect) {
-			switch (effect.type) {
-				case cardEffect.ATTACK: {
-					if (effect.values.length == 1)
-						return `Attack for ${effect.values[0]}`
-					else
-						return `Attack for ${effect.values[0]} ${effect.values[1]} times`
-				}
-				case cardEffect.DEFEND: {
-					return `Defend for ${effect.values[0]}`
-				}
-				case cardEffect.DRAW: {
-					return `Draw ${effect.values[0]} cards`
-				}
-				case cardEffect.SHUFFLE: {
-					return `Shuffle the deck`
-				}
-				case cardEffect.DISCARDRANDOM: {
-					if (effect.values[0] == 1)
-						return `Discard random card`
-					else
-						return `Discard ${effect.values[0]} random cards`
-				}
-				case cardEffect.DISCARDHAND: {
-					return `Discard your hand`
-				}
-				case cardEffect.EXHAUSTSELF: {
-					return `Exhaust this card`
-				}
-			}
-			return "Invalid Effect";
-		},
+    returnDescriptionString(effect) {
+      switch (effect.type) {
+        case cardEffect.ATTACK: {
+          if (effect.values.length == 1)
+            return `Attack for ${effect.values[0]}`
+          else
+            return `Attack for ${effect.values[0]} ${effect.values[1]} times`
+        }
+        case cardEffect.DEFEND: {
+          return `Defend for ${effect.values[0]}`
+        }
+        case cardEffect.DRAW: {
+          return `Draw ${effect.values[0]} cards`
+        }
+        case cardEffect.SHUFFLE: {
+          return `Shuffle the deck`
+        }
+        case cardEffect.DISCARDRANDOM: {
+          if (effect.values[0] == 1)
+            return `Discard random card`
+          else
+            return `Discard ${effect.values[0]} random cards`
+        }
+        case cardEffect.DISCARDHAND: {
+          return `Discard your hand`
+        }
+        case cardEffect.EXHAUSTSELF: {
+          return `Exhaust this card`
+        }
+      }
+      return "Invalid Effect";
+    },
   },
 };
 </script>

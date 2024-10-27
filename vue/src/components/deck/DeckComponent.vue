@@ -1,13 +1,13 @@
 <template>
   <div class="deck__wrapper center-horizontal">
     <div class="deck center-horizontal center-vertical"
-      :style="(() => ({'--card-spacing': `${getXSpacing}px`}))()"
+      :style="{'--card-spacing': `${getXSpacing}px`}"
     >
       <CardComponent 
         v-for="(card, index) in getHand" 
-        :key="(() => card.id)()"
-        :card="(() => card)()"
-        :style="(() => applyTransform(index))()"
+        :key="card.id"
+        :card="card"
+        :style="applyTransform(index)"
         @onMouseOver="(isHovered) => handleMouseOver(isHovered, index)"
         @onCardClick="() => handleCardClick()"
       />
