@@ -1,8 +1,4 @@
-import Vue from "vue";
-import Vuex from "vuex";
 import cardEffect from "@/components/common/cardEffect";
-
-Vue.use(Vuex);
 
 export default {
   namespaced: true,
@@ -10,7 +6,7 @@ export default {
     cards: [
       {
         title: "Attack",
-        image: require('@/assets/cards/Archer_Charged_Shot.png'),
+        image: require("@/assets/cards/Archer_Charged_Shot.png"),
         cost: 1,
         rarity: 1,
         effects: [
@@ -22,7 +18,7 @@ export default {
       },
       {
         title: "Defend",
-        image:  require('@/assets/cards/Mage_Explode.png'),
+        image: require("@/assets/cards/Mage_Explode.png"),
         cost: 0,
         rarity: 1,
         effects: [
@@ -34,7 +30,7 @@ export default {
       },
       {
         title: "Riposte",
-        image:  require('@/assets/cards/Archer_Back_Up.png'),
+        image: require("@/assets/cards/Archer_Back_Up.png"),
         cost: 4,
         rarity: 1,
         effects: [
@@ -50,7 +46,7 @@ export default {
       },
       {
         title: "Fury Swipes",
-        image: require('@/assets/cards/Archer_Rapid_Fire.png'),
+        image: require("@/assets/cards/Archer_Rapid_Fire.png"),
         cost: 14,
         rarity: 1,
         effects: [
@@ -76,6 +72,6 @@ export default {
   },
   getters: {
     getCards: (state) => state.cards,
-    getCardById: (state) => (id) =>  state.cards.find((card) => card.id == id),
+    getCardById: (state) => (id) => state.cards.find((card) => card.id == id),
   },
 };

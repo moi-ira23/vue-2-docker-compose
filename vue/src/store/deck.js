@@ -1,8 +1,4 @@
-import Vue from "vue";
-import Vuex from "vuex";
 import cardStore from "./cards";
-
-Vue.use(Vuex);
 
 export default {
   namespaced: true,

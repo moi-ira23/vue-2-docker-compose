@@ -1,5 +1,4 @@
 import modals from './modals'
-import cards from './cards'
 import deck from './deck'
 
 export default {
@@ -9,7 +8,6 @@ export default {
   mutations: {},
   modules: {
     modals,
-    cards,
     deck,
   }
 }

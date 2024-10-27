@@ -99,47 +99,47 @@ export default {
 
 <style scoped lang="less">
 .card {
-	@cardHeight: 320px;
-	@cardWidth: 220px;
-	@imageHeight: 120px;
-	@imageWidth: 200px;
+  @cardHeight: 320px;
+  @cardWidth: 220px;
+  @imageHeight: 120px;
+  @imageWidth: 200px;
 
   height: @cardHeight;
   width: @cardWidth;
   transform-origin: center;
   cursor: pointer;
 
-	&__content {
-		display: flex;
-		flex-direction: column;
-		overflow: hidden;
+  &__content {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 
-		height: @cardHeight;
-		width: @cardWidth;
+    height: @cardHeight;
+    width: @cardWidth;
 
-		background-color: rgb(121, 126, 133);
-		border: 2px solid #000;
-		border-radius: 15px;
-	}
+    background-color: rgb(121, 126, 133);
+    border: 2px solid #000;
+    border-radius: 15px;
+  }
 
-	&__cost {
-		height: 25px;
-		width: 25px;
+  &__cost {
+    height: 25px;
+    width: 25px;
 
-		position: absolute;
-		margin-top: -310px;
-		margin-left: -5px;
-		z-index: 10;
+    position: absolute;
+    margin-top: -310px;
+    margin-left: -5px;
+    z-index: 10;
 
-		background-color: #e2d87b;
-		border: 2px solid #a09748;
-		border-radius: 6px;
+    background-color: #e2d87b;
+    border: 2px solid #a09748;
+    border-radius: 6px;
 
-		font: 20px bold;
-		text-wrap: nowrap;
-	}
+    font: 20px bold;
+    text-wrap: nowrap;
+  }
 
-	&__image {
+  &__image {
     height: @imageHeight;
     width: @imageWidth;
 
@@ -147,18 +147,18 @@ export default {
     margin-left: calc((@cardWidth - @imageWidth) / 2);
     margin-top: 10px;
     border-radius: 15px;
-    
-		&-img {
+
+    &-img {
       height: 100%;
       width: 100%;
       border-radius: 15px;
-      position: absolute; 
+      position: absolute;
       top: 0;
       left: 0;
-		}
-	}
+    }
+  }
 
-	&__info {
+  &__info {
     display: flex;
     flex-direction: column;
     flex-basis: 50%;

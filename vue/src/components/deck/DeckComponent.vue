@@ -30,11 +30,11 @@ export default {
   },
   computed: {
     ...mapGetters("deck", ["getHand"]),
-    
+
     handLength() {
       return this.getHand.length;
     },
-    
+
     getXSpacing() {
       return this.handLength * -11;
     },
@@ -56,15 +56,15 @@ export default {
       const isHovered = this.hoveredIndex == index;
       if (isHovered)
         return {
-					transform: `scale(${this.getScaling + 0.05}) rotate(0deg) translateY(-35px)`,
-					transition: `transform 0.1s ease-out`,
-					zIndex: 100
-				}
+          transform: `scale(${this.getScaling + 0.05}) rotate(0deg) translateY(-35px)`,
+          transition: `transform 0.1s ease-out`,
+          zIndex: 100
+        }
       else
-				return {
-					transform: `scale(${this.getScaling}) rotate(${this.getRotation(index)}deg) translateY(${this.getYShift(index)}px)`,
-					transition: `transform 0.05s ease-in`,
-				}
+        return {
+          transform: `scale(${this.getScaling}) rotate(${this.getRotation(index)}deg) translateY(${this.getYShift(index)}px)`,
+          transition: `transform 0.05s ease-in`,
+        }
     },
 
     getRotation(index) {
@@ -98,16 +98,15 @@ export default {
   background-color: pink;
 
   &__wrapper {
-    height:fit-content;
+    height: fit-content;
     width: fit-content;
 
     padding-top: 35px;
     overflow: hidden;
   }
 
-  > .card {
-      margin-left: var(--card-spacing);
-    }
-
+  >.card {
+    margin-left: var(--card-spacing);
+  }
 }
 </style>
