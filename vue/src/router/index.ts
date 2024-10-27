@@ -5,6 +5,7 @@ import AddItemPage from "../components/pages/AddItem.vue"
 import CatalogPage from '@/components/pages/Catalog.vue'
 import ItemPage from '@/components/pages/Item.vue'
 import CartPage from '../components/pages/Cart.vue'
+import FavoritesPage from '../components/pages/Favorites.vue'
 
 Vue.use(VueRouter);
 
@@ -29,6 +30,11 @@ const routes = [
     name: RouteNames.CART,
     component: CartPage
   },
+  {
+    path: '/favorites',
+    name: RouteNames.FAVORITES,
+    component: FavoritesPage
+  }
 ];
 
 const router = new VueRouter({

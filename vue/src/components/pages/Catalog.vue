@@ -1,21 +1,21 @@
 <template>
     <PageLayout>
         <section class="catalog-page">
-            <CatalogCard v-for="(item) in getCatalog" :key="item.id" :item="item" />
+            <CardItem v-for="(item) in getCatalog" :key="item.id" :item="item" />
         </section>
     </PageLayout>
 </template>
 
 <script>
 import PageLayout from '../parts/PageLayout'
-import CatalogCard from '../parts/CatalogCard'
+import CardItem from '../parts/CardItem'
 import { mapGetters } from 'vuex';
 
 export default {
     name: 'CatalogPage',
     components: {
         PageLayout,
-        CatalogCard,
+        CardItem,
     },
     computed: {
         ...mapGetters('catalog', [

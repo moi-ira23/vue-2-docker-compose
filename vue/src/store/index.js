@@ -1,5 +1,6 @@
 import catalog from "./catalog";
 import cart from "./cart";
+import favorites from "./favorites";
 
 export default {
   namespaced: true,
@@ -9,5 +10,6 @@ export default {
   modules: {
     catalog,
     cart,
+    favorites,
   },
 };
