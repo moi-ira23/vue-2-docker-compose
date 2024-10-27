@@ -14,11 +14,11 @@
       </option>
     </select>
     <div
-      class="select__button"
-      :class="buttonClass"
+      class="select__toggle"
+      :class="toggleClass"
       @mouseover="() => setTextHoverIfNotOpen()"
       @mouseleave="() => unHoverText()"
-      @click="() => selectButtonClick()"
+      @click="() => selectToggleClick()"
     >
       {{ displayText }}
     </div>
@@ -65,9 +65,6 @@ export default {
     tabindex: {
       type: Number,
       default: 0,
-      validator: function (value) {
-        return value >= 0;
-      },
     },
   },
   computed: {
@@ -97,11 +94,11 @@ export default {
         ? selectedValues[0]
         : "Разные";
     },
-    buttonClass() {
+    toggleClass() {
       return {
-        "select__button--focused": this.isFocused,
-        "select__button--opened": this.isOpen,
-        "select__button--highlighted": this.isTextHover,
+        "select__toggle--focused": this.isFocused,
+        "select__toggle--opened": this.isOpen,
+        "select__toggle--highlighted": this.isTextHover,
       };
     },
   },
@@ -137,7 +134,7 @@ export default {
     setHighlightedOption(type) {
       this.highlightedOption = type;
     },
-    selectButtonClick() {
+    selectToggleClick() {
       this.isOpen = !this.isOpen;
     },
     onOptionClick(type) {
@@ -175,7 +172,7 @@ export default {
     filter: brightness(0.7);
   }
 
-  &__button {
+  &__toggle {
     display: flex;
     justify-content: space-between;
     align-items: center;

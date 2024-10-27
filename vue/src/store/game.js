@@ -1,7 +1,6 @@
 import Vue from "vue";
 import gameStorage from '@/GameEngine/gameStorage';
-import levels from '@/assets/levels.json';
-import { validateFlower, validateWall, validateGround } from "@/GameEngine/GridValidationFunctions"
+import mapValidator from "@/GameEngine/GridValidationFunctions"
 
 export default {
   namespaced: true,
@@ -47,7 +46,7 @@ export default {
       Vue.set(state.selectedGrid[row], col, !state.selectedGrid[row][col]);
     },
     setGridSize(state, { rows, columns }) {
-      const defaultCellType = 2;
+      const defaultCellType = 3;
       if (state.grid.length < rows) {
         for (let i = state.grid.length; i < rows; i++) {
           state.grid.push(new Array(columns).fill(defaultCellType));
@@ -120,10 +119,10 @@ export default {
   },
 };
 
-function validateGrid(state) {
-  const flowerValidation = validateFlower(state.grid);
-  const wallValidation = validateWall(state.grid);
-  const groundValidation = validateGround(state.grid);
+const validateGrid = (state) => {
+  const flowerValidation = mapValidator.validateFlower(state.grid);
+  const wallValidation = mapValidator.validateWall(state.grid);
+  const groundValidation = mapValidator.validatePot(state.grid);
   state.validationResults = {
     flower: flowerValidation,
     wall: wallValidation,
