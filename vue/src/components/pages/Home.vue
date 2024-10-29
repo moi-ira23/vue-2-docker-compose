@@ -15,7 +15,7 @@ export default {
   name: 'HomePage',
   mixins: [helpModal],
   components: {
-    PageLayout
+    PageLayout,
   }
 }
 </script>

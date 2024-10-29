@@ -2,21 +2,27 @@
   <div>
     <RouterView />
     <ModalContainer />
+    <DeckComponent />
   </div>
 </template>
 
 <script>
 import ModalContainer from "@/components/parts/ModalContainer";
+import DeckComponent from "./deck/DeckComponent.vue";
 
 export default {
   components: {
-    ModalContainer
+    ModalContainer,
+    DeckComponent
   }
 }
 </script>
 
 <style lang="less">
 @import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap');
+@import "@../../../less/const.less";
+@import "@../../../less/common.less";
+
 
 body {
   margin: 0;
