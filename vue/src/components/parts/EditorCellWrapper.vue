@@ -2,7 +2,9 @@
   <div
     class="wrapper"
     :class="{ 'wrapper--selected': isSelected }"
-    @click="() => onClick()"
+    @mousedown="() => onMouseDown()"
+    @mouseup="() => onMouseUp()"
+    @mouseenter="() => onMouseEnter()"
   >
     <slot></slot>
   </div>
@@ -18,8 +20,14 @@ export default {
     },
   },
   methods: {
-    onClick() {
-      this.$emit("onClick");
+    onMouseDown() {
+      this.$emit("onMouseDown");
+    },
+    onMouseUp() {
+      this.$emit("onMouseUp");
+    },
+    onMouseEnter() {
+      this.$emit("onMouseEnter");
     },
   },
 };

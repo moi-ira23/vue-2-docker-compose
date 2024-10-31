@@ -134,6 +134,10 @@ export default {
         animation: rotateAnimation 3s infinite alternate;
       }
     }
+
+    &--brown {
+      background-color: rgb(53, 14, 14);
+    }
   }
 }
 

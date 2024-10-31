@@ -10,6 +10,9 @@
         :key="`${rowIndex}-${cellIndex}`"
         :isSelected="selectedGrid[rowIndex][cellIndex]"
         @onClick="() => handleCellClick(rowIndex, cellIndex)"
+        @onMouseDown="() => handleCellClick(rowIndex, cellIndex)"
+        @onMouseEnter="() => handleCellHover(rowIndex, cellIndex)"
+        @onMouseUp="() => endSelection()"
       >
         <GameCell :cellType="cell" />
       </EditorCellWrapper>
@@ -28,6 +31,12 @@ export default {
     GameCell,
     EditorCellWrapper,
   },
+  data() {
+    return {
+      isSelecting: false,
+      rememberedSelection: false, 
+    };
+  },
   computed: {
     ...mapGetters('game', [
       'getGrid', 'selectedGrid'
@@ -38,8 +47,26 @@ export default {
         'toggleSelectedCell',
     ]),
     handleCellClick(row, col) {
-      this.toggleSelectedCell({row, col});
+      this.isSelecting = true;
+      this.rememberedSelection = !this.selectedGrid[row][col];
+      this.toggleSelectedCell({ row, col });
     },
+    handleCellHover(row, col) {
+      if (this.isSelecting) {
+        if (this.selectedGrid[row][col] !== this.rememberedSelection) {
+            this.toggleSelectedCell({ row, col });
+        }
+      }
+    },
+    endSelection() {
+      this.isSelecting = false;
+    },
+  },
+  mounted() {
+    window.addEventListener("mouseup", this.endSelection);
+  },
+  beforeDestroy() {
+    window.removeEventListener("mouseup", this.endSelection);
   },
 };
 </script>

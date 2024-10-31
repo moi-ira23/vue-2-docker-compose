@@ -1,5 +1,6 @@
 import Vue from "vue";
 import gameStorage from '@/GameEngine/gameStorage';
+import mapValidator from "@/GameEngine/GridValidationFunctions"
 
 export default {
   namespaced: true,
@@ -9,6 +10,11 @@ export default {
     cellTypes: [1, 2, 3, 4, 5, 6, 7, 8, 9],
     currentLevel: null,
     isCustomLevel: false,
+    validationResults: {
+      flower: "",
+      wall: "",
+      ground: "",
+    }
   },
   getters: {
     getGrid: (state) => state.grid,
@@ -18,10 +24,12 @@ export default {
     cellTypes: (state) => state.cellTypes,
     currentLevel: (state) => state.currentLevel,
     isCustomLevel: (state) => state.isCustomLevel,
+    getValidationResults: (state) => state.validationResults,
   },
   mutations: {
     setGrid(state, grid) {
       state.grid = grid;
+      validateGrid(state)
     },
     setSelectedGrid(state, selectedGrid) {
       state.selectedGrid = selectedGrid;
@@ -32,12 +40,13 @@ export default {
     },
     updateCell(state, { row, col, cellType }) {
       state.grid[row][col] = cellType;
+      validateGrid(state)
     },
     toggleSelectedCell(state, { row, col }) {
       Vue.set(state.selectedGrid[row], col, !state.selectedGrid[row][col]);
     },
     setGridSize(state, { rows, columns }) {
-      const defaultCellType = 2;
+      const defaultCellType = 3;
       if (state.grid.length < rows) {
         for (let i = state.grid.length; i < rows; i++) {
           state.grid.push(new Array(columns).fill(defaultCellType));
@@ -65,6 +74,8 @@ export default {
         }
         return row;
       });
+
+      validateGrid(state)
     },
   },
   actions: {
@@ -107,3 +118,14 @@ export default {
     },
   },
 };
+
+const validateGrid = (state) => {
+  const flowerValidation = mapValidator.validateFlower(state.grid);
+  const wallValidation = mapValidator.validateWall(state.grid);
+  const groundValidation = mapValidator.validatePot(state.grid);
+  state.validationResults = {
+    flower: flowerValidation,
+    wall: wallValidation,
+    ground: groundValidation,
+  }
+}
